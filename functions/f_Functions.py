@@ -1,5 +1,7 @@
 import tkinter as tk
 
+
+
 def defineWindow(win_width, win_height, **kwargs) :
 
 	title    = kwargs.get('title')
@@ -14,7 +16,7 @@ def defineWindow(win_width, win_height, **kwargs) :
 		x = int((toplevel.geometry()).split('x')[1].split('+')[1]) # 'x' position of 'root' window
 		y = int((toplevel.geometry()).split('x')[1].split('+')[2])# 'y' position of 'root' window
 
-		y += (height/2) - (win_height/2)    # Positionning the top level window in the center of the 'root' window
+		y += (height/2) - (win_height/2)    # Positioning the top level window in the center of the 'root' window
 		x += (width/2) - (win_width/2)      # //
 
 	else :
@@ -39,3 +41,23 @@ def defineWindow(win_width, win_height, **kwargs) :
 	win.resizable(0,0)
 
 	return(win)
+
+def createFrame(container, width, height, **kwargs) :
+	fr = tk.Frame(container, width = width, height = height)
+
+	x  = kwargs.get('x')
+	y  = kwargs.get('y')
+	bg = kwargs.get('bg')
+	pk = kwargs.get('pk')
+	pp = kwargs.get('pp')
+
+	if pk :
+		fr.pack()
+	if pp :
+		fr.pack_propagate(0)
+	if x and y :
+		fr.place(x = int(x), y = int(y))
+	if bg :
+		fr.config(bg = bg)
+
+	return(fr)
