@@ -61,3 +61,49 @@ def createFrame(container, width, height, **kwargs) :
 		fr.config(bg = bg)
 
 	return(fr)
+
+def createLabel(container, **kwargs) :
+
+	w      = kwargs.get('w')
+	h      = kwargs.get('h')
+	bg     = kwargs.get('bg')
+	fg     = kwargs.get('fg')
+	x      = kwargs.get('x')
+	y	   = kwargs.get('y')
+	cur    = kwargs.get('cur')
+	pp     = kwargs.get('pp')
+	txt	   = kwargs.get('txt')
+	btn	   = kwargs.get('btn')
+	anc    = kwargs.get('anc')
+
+
+	lb = tk.Label(container)
+	lb.pack()
+	if pp :
+		lb.pack_propagate(0)
+	if w :
+		lb.config(width = w)
+	if h :
+		lb.config(height = h)
+	if bg :
+		lb.config(bg = bg)
+	if fg :
+		lb.config(fg = fg)
+	if x and y :
+		lb.place(x = int(x), y = int(y))
+	if cur :
+		lb.config(cursor = cur)
+	if txt :
+		lb.config(text = txt)
+	if anc :
+		lb.config(anchor = anc)
+	if btn == 1 and bg and fg :
+		lb.bind('<Enter>', lambda event : event.widget.config(bg = '#A6ABAA', fg = 'white'))
+		lb.bind('<Leave>', lambda event : event.widget.config(bg = bg, fg = fg))
+	elif btn == 2 :
+		lb.bind('<Enter>', lambda event : event.widget.config(relief = 'sunken'))
+		lb.bind('<Leave>', lambda event : event.widget.config(relief = 'flat'))
+	elif btn == 3 :
+		lb.bind('<Enter>', lambda event : event.widget.config(bg = '#252A29'))
+		lb.bind('<Leave>', lambda event : event.widget.config(bg = bg))
+	return(lb)
